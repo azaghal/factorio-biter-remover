@@ -89,4 +89,44 @@ commands.disable_biter_base_generation.func = function(command_data)
 end
 
 
+commands.enable_biter_base_generation = {}
+commands.enable_biter_base_generation.name = "enable-biter-base-generation"
+commands.enable_biter_base_generation.help = [[
+Enables biter base generation on newly generated chunks.
+Usage:
+    /enable-biter-base-generation [SURFACE]
+Parameters:
+    SURFACE
+        List of (space-separated) surfaces where biter base generation should be enabled. For currently visible
+        surface, specify "current" as surface name. To enable biter base generation on every single surface in the
+        game, pass-in "all" as surface name.
+]]
+
+
+--- Parses the passed-in player parameters and invokes enabling of biter base generation.
+--
+-- @param command_data CustomCommandData Command data structure passed-in by the game engine.
+--
+commands.enable_biter_base_generation.func = function(command_data)
+    local player = game.players[command_data.player_index]
+
+    -- Administrator privileges are required to run the command.
+    if not player.admin then
+        player.print({"error.br-administrator-privileges-required"})
+        return
+    end
+
+    -- Show help if no parameters were specified.
+    if not command_data.parameter then
+        player.print(commands.enable_biter_base_generation.help)
+        return
+    end
+
+    local surfaces = utils.parse_list_of_surfaces(command_data.parameter, {current=player.surface.name}, player)
+    if surfaces then
+        remover.enable_biter_base_generation(surfaces)
+    end
+end
+
+
 return commands

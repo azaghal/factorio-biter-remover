@@ -50,6 +50,22 @@ Parameters:
     > List of (space-separated) surfaces where biter base generation should be disabled. For currently visible surface, specify "current" as surface name. To disable biter base generation on every single surface in the game, pass-in "all" as surface name.
 
 
+### Enable biter base generation
+
+Enables biter base generation on newly generated chunks.
+
+Usage:
+```
+/enable-biter-base-generation [SURFACE]
+```
+
+Parameters:
+
+-   `[SURFACE]...`
+
+    > List of (space-separated) surfaces where biter base generation should be enabled. For currently visible surface, specify "current" as surface name. To enable biter base generation on every single surface in the game, pass-in "all" as surface name.
+
+
 Known issues
 ------------
 
