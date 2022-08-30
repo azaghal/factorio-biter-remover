@@ -38,4 +38,17 @@ function remover.remove_hostile_biters(force, surfaces)
 end
 
 
+--- Disables biter base generation on passed-in surfaces.
+--
+-- @param surfaces {LuaSurface} List of surfaces where biter base generation should be disabled.
+--
+function remover.disable_biter_base_generation(surfaces)
+    for _, surface in pairs(surfaces) do
+        local map_gen_settings = surface.map_gen_settings
+        map_gen_settings.autoplace_controls["enemy-base"].size = "none"
+        surface.map_gen_settings = map_gen_settings
+    end
+end
+
+
 return remover
