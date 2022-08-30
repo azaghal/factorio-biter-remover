@@ -35,6 +35,14 @@ function remover.remove_hostile_biters(force, surfaces)
             end
         end
     end
+
+    -- Output informative message to all players.
+    local surface_names = {}
+    for _, surface in pairs(surfaces) do
+        table.insert(surface_names, surface.name)
+    end
+    table.sort(surface_names)
+    game.print({"info.br-biters-removed", force.name, table.concat(surface_names, ", ")})
 end
 
 
@@ -48,6 +56,14 @@ function remover.disable_biter_base_generation(surfaces)
         map_gen_settings.autoplace_controls["enemy-base"].size = "none"
         surface.map_gen_settings = map_gen_settings
     end
+
+    -- Output informative message to all players.
+    local surface_names = {}
+    for _, surface in pairs(surfaces) do
+        table.insert(surface_names, surface.name)
+    end
+    table.sort(surface_names)
+    game.print({"info.br-biter-base-generation-disabled", table.concat(surface_names, ", ")})
 end
 
 
