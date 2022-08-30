@@ -3,4 +3,6 @@ Version: 999.999.999
 Date: 9999-99-99
   Changes:
   Features:
+    - Command for removing nests, worms, and biters.
+    - Command for disabling biter base generation.
   Bugfixes:
