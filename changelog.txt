@@ -1,9 +1,7 @@
 ---------------------------------------------------------------------------------------------------
-Version: 999.999.999
-Date: 9999-99-99
-  Changes:
+Version: 1.0.0
+Date: 2022-08-30
   Features:
     - Command for removing nests, worms, and biters.
     - Command for disabling biter base generation.
     - Command for enabling biter base generation.
-  Bugfixes:
