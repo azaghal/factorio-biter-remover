@@ -18,6 +18,22 @@ Features
 --------
 
 
+### Remove nests, worms, and biters
+
+Removes all hostile nests, worms, and biters from listed surfaces.
+
+Usage:
+```
+/remove-biters [SURFACE]...
+```
+
+Parameters:
+
+-   `[SURFACE]...`
+
+    > List of (space-separated) surfaces from which to remove hostile nests, worms, and biters. For currently visible surface, specify `current` as surface name. To remove biters from every single surface in the game, pass-in `all` as surface name.
+
+
 Known issues
 ------------
 
