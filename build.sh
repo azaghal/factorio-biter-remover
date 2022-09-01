@@ -22,7 +22,7 @@
 set -u
 
 PROGRAM="factorio_development.sh"
-VERSION="1.0.0"
+VERSION="1.0.2"
 
 function usage() {
     cat <<EOF
@@ -32,7 +32,7 @@ Usage:
 
   $PROGRAM [OPTIONS] init [MOD_DIRECTORY_PATH]
   $PROGRAM [OPTIONS] build [MOD_DIRECTORY_PATH]
-  $PROGRAM [OPTIONS] release [MOD_DIRECTORY_PATH]
+  $PROGRAM [OPTIONS] release MOD_VERSION [MOD_DIRECTORY_PATH]
   $PROGRAM [OPTIONS] abort-release [MOD_DIRECTORY_PATH]
 
 EOF
@@ -587,6 +587,7 @@ EOF
 IGNORE_PATHS=(
     ".gitignore"
     "build.cfg"
+    "build.sh"
 )
 
 # Specify prefix to use in front of versions when tagging releases
