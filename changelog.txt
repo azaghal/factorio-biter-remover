@@ -3,6 +3,9 @@ Version: 999.999.999
 Date: 9999-99-99
   Changes:
   Features:
+    - Command for disabling pollution.
+    - Command for enabling pollution.
+    - Command for clearing pollution.
   Bugfixes:
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0

@@ -106,4 +106,35 @@ function remover.enable_biter_base_generation(surfaces)
 end
 
 
+--- Globally disables pollution.
+--
+function remover.disable_pollution()
+    game.map_settings.pollution.enabled = false
+    game.print({"info.br-pollution-disabled"})
+end
+
+
+--- Globally enables pollution.
+--
+function remover.enable_pollution()
+    game.map_settings.pollution.enabled = true
+    game.print({"info.br-pollution-enabled"})
+end
+
+
+--- Clears pollution on all passed-in surfaces.
+--
+-- @param surface {LuaSurface} List of surfaces to clear the pollution on.
+--
+function remover.clear_pollution(surfaces)
+    local surface_names = {}
+
+    for _, surface in pairs(surfaces) do
+        surface.clear_pollution()
+        table.insert(surface_names, surface.name)
+    end
+
+    game.print({"info.br-pollution-cleared", table.concat(surface_names, ", ")})
+end
+
 return remover

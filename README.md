@@ -66,6 +66,41 @@ Parameters:
     > List of (space-separated) surfaces where biter base generation should be enabled. For currently visible surface, specify "current" as surface name. To enable biter base generation on every single surface in the game, pass-in "all" as surface name.
 
 
+### Disable pollution
+
+Disables all pollution.
+
+Usage:
+```
+/disable-pollution
+```
+
+
+### Enable pollution
+
+Enables pollution.
+
+Usage:
+```
+/enable-pollution
+```
+
+
+### Clear pollution from surfaces
+
+Clears all polution on listed surfaces. Does not disable pollution (this can only be done globally).
+
+Usage:
+```
+/clear-polution [SURFACE]
+```
+
+Parameters:
+
+-   `[SURFACE]...`
+    > List of (space-separated) surfaces on which to clear pollution. For currently visible surface, specify "current" as surface name. To enable biter base generation on every single surface in the game, pass-in "all" as surface name.
+
+
 Known issues
 ------------
 
