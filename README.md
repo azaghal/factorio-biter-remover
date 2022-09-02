@@ -98,6 +98,7 @@ Usage:
 Parameters:
 
 -   `[SURFACE]...`
+
     > List of (space-separated) surfaces on which to clear pollution. For currently visible surface, specify "current" as surface name. To enable biter base generation on every single surface in the game, pass-in "all" as surface name.
 
 
