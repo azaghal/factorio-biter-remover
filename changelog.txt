@@ -1,12 +1,10 @@
 ---------------------------------------------------------------------------------------------------
-Version: 999.999.999
-Date: 9999-99-99
-  Changes:
+Version: 1.1.0
+Date: 2022-09-02
   Features:
     - Command for disabling pollution.
     - Command for enabling pollution.
     - Command for clearing pollution.
-  Bugfixes:
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 2022-08-30
