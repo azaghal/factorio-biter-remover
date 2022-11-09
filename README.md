@@ -92,7 +92,7 @@ Clears all polution on listed surfaces. Does not disable pollution (this can onl
 
 Usage:
 ```
-/clear-polution [SURFACE]
+/clear-pollution [SURFACE]
 ```
 
 Parameters:
