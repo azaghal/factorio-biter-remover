@@ -1,8 +1,6 @@
 ---------------------------------------------------------------------------------------------------
-Version: 999.999.999
-Date: 9999-99-99
-  Changes:
-  Features:
+Version: 1.1.1
+Date: 2023-01-18
   Bugfixes:
     - Fixed crashes for surfaces that do not have auto-placement of map features (such as Factorissimo 2 factories).
 ---------------------------------------------------------------------------------------------------
