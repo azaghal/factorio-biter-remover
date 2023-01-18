@@ -7,6 +7,6 @@
     "description": "Commands for removing and disabling biters and pollution.",
     "factorio_version": "1.1",
     "dependencies": [
-        "? base >= 999.999.999"
+        "? base >= 1.1"
      ]
 }
