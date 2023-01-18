@@ -54,27 +54,36 @@ function remover.disable_biter_base_generation(surfaces)
     -- Initialise the structure for backing-up existing values.
     global.biter_base_generation_size = global.biter_base_generation_size or {}
 
+    -- List of surfaces that have been processed, used for informing players.
+    local processed_surface_names = {}
+
     -- Drop biter base generation from map generation settings.
     for _, surface in pairs(surfaces) do
         local map_gen_settings = surface.map_gen_settings
 
-        -- Store the original values for eventual re-enabling.
-        if global.biter_base_generation_size[surface.name] ~= 0 then
-            global.biter_base_generation_size[surface.name] = map_gen_settings.autoplace_controls["enemy-base"].size
+        -- Ignore surfaces without autplace controls for enemy bases (such as ones from Factorissimo 2 and similar
+        -- mods).
+        if map_gen_settings.autoplace_controls and map_gen_settings.autoplace_controls["enemy-base"] then
+
+            -- Store the original values for eventual re-enabling.
+            if global.biter_base_generation_size[surface.name] ~= 0 then
+                global.biter_base_generation_size[surface.name] = map_gen_settings.autoplace_controls["enemy-base"].size
+            end
+
+            map_gen_settings.autoplace_controls["enemy-base"].size = 0
+
+            surface.map_gen_settings = map_gen_settings
+
+            table.insert(processed_surface_names, surface.name)
+
         end
 
-        map_gen_settings.autoplace_controls["enemy-base"].size = 0
-
-        surface.map_gen_settings = map_gen_settings
     end
 
     -- Output informative message to all players.
-    local surface_names = {}
-    for _, surface in pairs(surfaces) do
-        table.insert(surface_names, surface.name)
-    end
-    table.sort(surface_names)
-    game.print({"info.br-biter-base-generation-disabled", table.concat(surface_names, ", ")})
+    table.sort(processed_surface_names)
+    game.print({"info.br-biter-base-generation-disabled", table.concat(processed_surface_names, ", ")})
+
 end
 
 
@@ -84,25 +93,33 @@ end
 --
 function remover.enable_biter_base_generation(surfaces)
 
+    -- List of surfaces that have been processed, used for informing players.
+    local processed_surface_names = {}
+
     for _, surface in pairs(surfaces) do
         local map_gen_settings = surface.map_gen_settings
 
-        local biter_base_generation_size =
-            global.biter_base_generation_size and global.biter_base_generation_size[surface.name] or
-            game.default_map_gen_settings.autoplace_controls["enemy-base"].size
+        -- Ignore surfaces without autplace controls for enemy bases (such as ones from Factorissimo 2 and similar
+        -- mods).
+        if map_gen_settings.autoplace_controls and map_gen_settings.autoplace_controls["enemy-base"] then
 
-        map_gen_settings.autoplace_controls["enemy-base"].size = biter_base_generation_size
+            local biter_base_generation_size =
+                global.biter_base_generation_size and global.biter_base_generation_size[surface.name] or
+                game.default_map_gen_settings.autoplace_controls["enemy-base"].size
 
-        surface.map_gen_settings = map_gen_settings
+            map_gen_settings.autoplace_controls["enemy-base"].size = biter_base_generation_size
+
+            surface.map_gen_settings = map_gen_settings
+
+            table.insert(processed_surface_names, surface.name)
+
+        end
+
     end
 
     -- Output informative message to all players.
-    local surface_names = {}
-    for _, surface in pairs(surfaces) do
-        table.insert(surface_names, surface.name)
-    end
-    table.sort(surface_names)
-    game.print({"info.br-biter-base-generation-enabled", table.concat(surface_names, ", ")})
+    table.sort(processed_surface_names)
+    game.print({"info.br-biter-base-generation-enabled", table.concat(processed_surface_names, ", ")})
 end
 
 
