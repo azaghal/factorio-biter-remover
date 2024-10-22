@@ -52,7 +52,7 @@ end
 --
 function remover.disable_biter_base_generation(surfaces)
     -- Initialise the structure for backing-up existing values.
-    global.biter_base_generation_size = global.biter_base_generation_size or {}
+    storage.biter_base_generation_size = storage.biter_base_generation_size or {}
 
     -- List of surfaces that have been processed, used for informing players.
     local processed_surface_names = {}
@@ -66,8 +66,8 @@ function remover.disable_biter_base_generation(surfaces)
         if map_gen_settings.autoplace_controls and map_gen_settings.autoplace_controls["enemy-base"] then
 
             -- Store the original values for eventual re-enabling.
-            if global.biter_base_generation_size[surface.name] ~= 0 then
-                global.biter_base_generation_size[surface.name] = map_gen_settings.autoplace_controls["enemy-base"].size
+            if storage.biter_base_generation_size[surface.name] ~= 0 then
+                storage.biter_base_generation_size[surface.name] = map_gen_settings.autoplace_controls["enemy-base"].size
             end
 
             map_gen_settings.autoplace_controls["enemy-base"].size = 0
@@ -104,7 +104,7 @@ function remover.enable_biter_base_generation(surfaces)
         if map_gen_settings.autoplace_controls and map_gen_settings.autoplace_controls["enemy-base"] then
 
             local biter_base_generation_size =
-                global.biter_base_generation_size and global.biter_base_generation_size[surface.name] or
+                storage.biter_base_generation_size and storage.biter_base_generation_size[surface.name] or
                 game.default_map_gen_settings.autoplace_controls["enemy-base"].size
 
             map_gen_settings.autoplace_controls["enemy-base"].size = biter_base_generation_size
