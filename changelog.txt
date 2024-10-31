@@ -4,6 +4,7 @@ Date: 9999-99-99
   Changes:
   Features:
   Bugfixes:
+    - Fixed incorrect spelling for clear-pollution command in help.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
 Date: 2024-10-22
