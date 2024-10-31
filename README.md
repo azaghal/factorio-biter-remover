@@ -88,11 +88,11 @@ Usage:
 
 ### Clear pollution from surfaces
 
-Clears all polution on listed surfaces. Does not disable pollution (this can only be done globally).
+Clears all pollution on listed surfaces. Does not disable pollution (this can only be done globally).
 
 Usage:
 ```
-/clear-polution [SURFACE]
+/clear-pollution [SURFACE]
 ```
 
 Parameters:

@@ -184,9 +184,9 @@ end
 commands.clear_pollution = {}
 commands.clear_pollution.name = "clear-pollution"
 commands.clear_pollution.help = [[
-Clears all polution on listed surfaces. Does not disable pollution (this can only be done globally).
+Clears all pollution on listed surfaces. Does not disable pollution (this can only be done globally).
 Usage:
-    /clear-polution [SURFACE]
+    /clear-pollution [SURFACE]
 Parameters:
     SURFACE
         List of (space-separated) surfaces on which to clear pollution. For currently visible surface, specify "current"
