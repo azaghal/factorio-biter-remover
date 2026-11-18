@@ -2,7 +2,9 @@
 Version: 999.999.999
 Date: 9999-99-99
   Changes:
+    - Dropped support for game version 2.0.
   Features:
+    - Added support for game version 2.1.
   Bugfixes:
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.1
