@@ -5,9 +5,9 @@ Biter Remover
 About
 -----
 
-Biter remover is a utility mod that implements a number of console commands that can be used to disable or remove biters and pollution mid-game.
+Biter remover is a utility mod that implements a number of console commands that can be used to disable or remove critters (biters, pentapods, demolishers) and pollution mid-game.
 
-Mod is primarily intended for use in late game or alongside larger modpacks to deal with heavy drops in UPS due to number of biters that get spawned as effect of factory pollution.
+Mod is primarily intended for use in late game or alongside larger modpacks to deal with heavy drops in UPS due to number of critters that get spawned as effect of factory pollution.
 
 Commands are fairly granular and where possible operate on specific surfaces. This can be particularly helpful with larger mods such as Space Exploration where normally one (large) surface will be the main source of UPS drop (usually Nauvis).
 
@@ -18,20 +18,20 @@ Features
 --------
 
 
-### Remove nests, worms, and biters
+### Remove critters
 
-Removes all hostile nests, worms, and biters from listed surfaces.
+Removes all hostile critters (nests, worms, biters, pentapods, demolishers) from listed surfaces.
 
 Usage:
 ```
-/remove-biters [SURFACE]...
+/remove-critters [SURFACE]...
 ```
 
 Parameters:
 
 -   `[SURFACE]...`
 
-    > List of (space-separated) surfaces from which to remove hostile nests, worms, and biters. For currently visible surface, specify `current` as surface name. To remove biters from every single surface in the game, pass-in `all` as surface name.
+    > List of (space-separated) surfaces from which to remove hostile critters. For currently visible surface, specify `current` as surface name. To remove critters from every single surface in the game, pass-in `all` as surface name.
 
 
 ### Disable biter base generation

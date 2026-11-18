@@ -9,25 +9,25 @@ local utils = require("scripts.utils")
 local commands = {}
 
 
-commands.remove_biters = {}
-commands.remove_biters.name = "remove-biters"
-commands.remove_biters.help = [[
-Removes all hostile nests, worms, and biters from listed surfaces.
+commands.remove_critters = {}
+commands.remove_critters.name = "remove-critters"
+commands.remove_critters.help = [[
+Removes all hostile critters (nests, worms, biters, pentapods, demolishers) from listed surfaces.
 Usage:
-    /remove-biters [SURFACE]...
+    /remove-critters [SURFACE]...
 Parameters:
     SURFACE
-        List of (space-separated) surfaces from which to remove hostile nests, worms, and biters. For currently visible
-        surface, specify "current" as surface name. To remove biters from every single surface in the game, pass-in
-        "all" as surface name.
+        List of (space-separated) surfaces from which to remove hostile critters. For currently visible surface, specify
+        "current" as surface name. To remove critters from every single surface in the game, pass-in "all" as surface
+        name.
 ]]
 
 
---- Parses the passed-in player parameters and invokes removal of hostile biters.
+--- Parses the passed-in player parameters and invokes removal of hostile critters.
 --
 -- @param command_data CustomCommandData Command data structure passed-in by the game engine.
 --
-commands.remove_biters.func = function(command_data)
+commands.remove_critters.func = function(command_data)
     local player = game.players[command_data.player_index]
 
     -- Administrator privileges are required to run the command.
@@ -38,13 +38,13 @@ commands.remove_biters.func = function(command_data)
 
     -- Show help if no parameters were specified.
     if not command_data.parameter then
-        player.print(commands.remove_biters.help)
+        player.print(commands.remove_critters.help)
         return
     end
 
     local surfaces = utils.parse_list_of_surfaces(command_data.parameter, {current=player.surface.name}, player)
     if surfaces then
-        remover.remove_hostile_biters(player.force, surfaces)
+        remover.remove_hostile_critters(player.force, surfaces)
     end
 end
 
