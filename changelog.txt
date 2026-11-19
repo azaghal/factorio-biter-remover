@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
-Version: 999.999.999
-Date: 9999-99-99
+Version: 3.0.0
+Date: 2026-11-19
   Changes:
     - Dropped support for game version 2.0.
     - Command for removing (biters) has been renamed to "/remove-critters"
