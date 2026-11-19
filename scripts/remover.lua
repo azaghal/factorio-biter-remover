@@ -28,7 +28,7 @@ function remover.remove_hostile_critters(force, surfaces)
     for _, surface in pairs(surfaces) do
         for _, hostile_force in pairs(hostile_forces) do
             for _, entity in pairs(surface.find_entities_filtered({force = hostile_force})) do
-                if not entity.valid then
+                if not entity.valid then --luacheck: ignore 542
                     -- Some entities may become invalidated in the middle of traversal (such as pentapods or demolisher
                     -- segments).
                 elseif entity.prototype.type == "unit" and
@@ -83,7 +83,7 @@ function remover.disable_critter_base_generation(surfaces)
 
             -- Keep track of original values.
             if storage.biter_base_generation_size[surface.name] ~= 0 then
-                storage.biter_base_generation_size[surface.name] = map_gen_settings.autoplace_controls["enemy-base"].size
+                storage.biter_base_generation_size[surface.name] = map_gen_settings.autoplace_controls["enemy-base"].size -- luacheck: ignore 631
             end
 
             map_gen_settings.autoplace_controls["enemy-base"].size = 0
@@ -99,7 +99,7 @@ function remover.disable_critter_base_generation(surfaces)
 
             -- Keep track of original values.
             if storage.pentapod_base_generation_size[surface.name] ~= 0 then
-                storage.pentapod_base_generation_size[surface.name] = map_gen_settings.autoplace_controls["gleba_enemy_base"].size
+                storage.pentapod_base_generation_size[surface.name] = map_gen_settings.autoplace_controls["gleba_enemy_base"].size  -- luacheck: ignore 631
             end
 
             map_gen_settings.autoplace_controls["gleba_enemy_base"].size = 0

@@ -15,7 +15,6 @@ local utils = {}
 --
 function utils.parse_list_of_surfaces(names, aliases, player)
     local surfaces = {}
-    local errors = {}
 
     for token in string.gmatch(names, "[^%s]+") do
         local name = aliases[token] or token
