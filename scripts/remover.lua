@@ -1,6 +1,10 @@
 -- Copyright (c) 2022 Branko Majic
 -- Provided under MIT license. See LICENSE for details.
 
+
+local utils = require("scripts.utils")
+
+
 local remover = {}
 
 
@@ -68,7 +72,7 @@ function remover.disable_critter_base_generation(surfaces)
     storage.territory_settings = storage.territory_settings or {}
 
     -- List of surfaces that have been processed, used for informing players.
-    local processed_surface_names = {}
+    local processed_surfaces = {}
 
     -- Drop critter base generation from map generation settings.
     for _, surface in pairs(surfaces) do
@@ -86,7 +90,7 @@ function remover.disable_critter_base_generation(surfaces)
 
             surface.map_gen_settings = map_gen_settings
 
-            table.insert(processed_surface_names, surface.name)
+            processed_surfaces[surface.name] = true
 
         end
 
@@ -102,7 +106,7 @@ function remover.disable_critter_base_generation(surfaces)
 
             surface.map_gen_settings = map_gen_settings
 
-            table.insert(processed_surface_names, surface.name)
+            processed_surfaces[surface.name] = true
         end
 
         -- Demolisher territories.
@@ -117,13 +121,14 @@ function remover.disable_critter_base_generation(surfaces)
 
             surface.map_gen_settings = map_gen_settings
 
-            table.insert(processed_surface_names, surface.name)
+            processed_surfaces[surface.name] = true
 
         end
 
     end
 
     -- Output informative message to all players.
+    local processed_surface_names = utils.get_table_keys(processed_surfaces)
     table.sort(processed_surface_names)
     game.print({"info.br-critter-base-generation-disabled", table.concat(processed_surface_names, ", ")})
 
@@ -137,7 +142,7 @@ end
 function remover.enable_critter_base_generation(surfaces)
 
     -- List of surfaces that have been processed, used for informing players.
-    local processed_surface_names = {}
+    local processed_surfaces = {}
 
     for _, surface in pairs(surfaces) do
         local map_gen_settings = surface.map_gen_settings
@@ -153,7 +158,7 @@ function remover.enable_critter_base_generation(surfaces)
 
             surface.map_gen_settings = map_gen_settings
 
-            table.insert(processed_surface_names, surface.name)
+            processed_surfaces[surface.name] = true
 
         end
 
@@ -168,7 +173,7 @@ function remover.enable_critter_base_generation(surfaces)
 
             surface.map_gen_settings = map_gen_settings
 
-            table.insert(processed_surface_names, surface.name)
+            processed_surfaces[surface.name] = true
 
         end
 
@@ -180,12 +185,13 @@ function remover.enable_critter_base_generation(surfaces)
         if storage.territory_settings and storage.territory_settings[surface.name] then
             map_gen_settings.territory_settings = storage.territory_settings[surface.name]
             surface.map_gen_settings = map_gen_settings
-            table.insert(processed_surface_names, surface.name)
+            processed_surfaces[surface.name] = true
         end
 
     end
 
     -- Output informative message to all players.
+    local processed_surface_names = utils.get_table_keys(processed_surfaces)
     table.sort(processed_surface_names)
     game.print({"info.br-critter-base-generation-enabled", table.concat(processed_surface_names, ", ")})
 end

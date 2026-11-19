@@ -46,4 +46,21 @@ function utils.parse_list_of_surfaces(names, aliases, player)
 end
 
 
+--- Returns list of keys defined in the passed-in table.
+--
+-- @param tbl table Table for which to return the list of keys.
+--
+-- @return {string} List of table keys.
+--
+function utils.get_table_keys(tbl)
+    local keys = {}
+
+    for k in pairs(tbl) do
+        table.insert(keys, k)
+    end
+
+    return keys
+end
+
+
 return utils
