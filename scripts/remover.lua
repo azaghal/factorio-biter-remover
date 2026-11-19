@@ -109,8 +109,8 @@ function remover.disable_critter_base_generation(surfaces)
             processed_surfaces[surface.name] = true
         end
 
-        -- Demolisher territories.
-        if map_gen_settings.autoplace_controls then
+        -- Demolisher generation.
+        if map_gen_settings["territory_settings"] then
 
             -- Keep track of original values.
             if not storage.territory_settings[surface.name] then
