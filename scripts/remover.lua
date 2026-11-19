@@ -29,8 +29,7 @@ function remover.remove_hostile_critters(force, surfaces)
         for _, hostile_force in pairs(hostile_forces) do
             for _, entity in pairs(surface.find_entities_filtered({force = hostile_force})) do
                 if not entity.valid then --luacheck: ignore 542
-                    -- Some entities may become invalidated in the middle of traversal (such as pentapods or demolisher
-                    -- segments).
+                    -- Some entities may become invalidated in the middle of traversal (such as pentapods).
                 elseif entity.prototype.type == "unit" and
                     (
                         string.find(entity.name, "biter") or
@@ -40,13 +39,19 @@ function remover.remove_hostile_critters(force, surfaces)
                     entity.destroy()
                 elseif entity.prototype.type == "spider-unit" and string.find(entity.name, "pentapod") then
                     entity.destroy()
-                elseif entity.prototype.type == "segmented-unit" and string.find(entity.name, "demolisher") then
-                    entity.destroy()
                 elseif entity.prototype.type == "unit-spawner" then
                     entity.destroy()
                 elseif entity.prototype.type == "turret" and string.find(entity.name, "worm") then
                     entity.destroy()
                 end
+            end
+        end
+
+        -- Demolishers are not guaranteed to exist as entities if containing chunks have not been generated, so we have
+        -- to process them separately from "regular" entities.
+        for _, unit in pairs(surface.get_segmented_units()) do
+            if string.find(unit.prototype.name, "demolisher") then
+                unit.destroy()
             end
         end
     end
