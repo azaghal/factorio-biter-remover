@@ -57,26 +57,27 @@ function remover.remove_hostile_critters(force, surfaces)
 end
 
 
---- Disables biter base generation on passed-in surfaces.
+--- Disables critter base generation on passed-in surfaces.
 --
--- @param surfaces {LuaSurface} List of surfaces where biter base generation should be disabled.
+-- @param surfaces {LuaSurface} List of surfaces where critter base generation should be disabled.
 --
-function remover.disable_biter_base_generation(surfaces)
+function remover.disable_critter_base_generation(surfaces)
     -- Initialise the structure for backing-up existing values.
     storage.biter_base_generation_size = storage.biter_base_generation_size or {}
+    storage.pentapod_base_generation_size = storage.pentapod_base_generation_size or {}
+    storage.territory_settings = storage.territory_settings or {}
 
     -- List of surfaces that have been processed, used for informing players.
     local processed_surface_names = {}
 
-    -- Drop biter base generation from map generation settings.
+    -- Drop critter base generation from map generation settings.
     for _, surface in pairs(surfaces) do
         local map_gen_settings = surface.map_gen_settings
 
-        -- Ignore surfaces without autplace controls for enemy bases (such as ones from Factorissimo 2 and similar
-        -- mods).
+        -- Biter generation.
         if map_gen_settings.autoplace_controls and map_gen_settings.autoplace_controls["enemy-base"] then
 
-            -- Store the original values for eventual re-enabling.
+            -- Keep track of original values.
             if storage.biter_base_generation_size[surface.name] ~= 0 then
                 storage.biter_base_generation_size[surface.name] = map_gen_settings.autoplace_controls["enemy-base"].size
             end
@@ -89,20 +90,51 @@ function remover.disable_biter_base_generation(surfaces)
 
         end
 
+        -- Pentapod generation.
+        if map_gen_settings.autoplace_controls and map_gen_settings.autoplace_controls["gleba_enemy_base"] then
+
+            -- Keep track of original values.
+            if storage.pentapod_base_generation_size[surface.name] ~= 0 then
+                storage.pentapod_base_generation_size[surface.name] = map_gen_settings.autoplace_controls["gleba_enemy_base"].size
+            end
+
+            map_gen_settings.autoplace_controls["gleba_enemy_base"].size = 0
+
+            surface.map_gen_settings = map_gen_settings
+
+            table.insert(processed_surface_names, surface.name)
+        end
+
+        -- Demolisher territories.
+        if map_gen_settings.autoplace_controls then
+
+            -- Keep track of original values.
+            if not storage.territory_settings[surface.name] then
+                storage.territory_settings[surface.name] = map_gen_settings["territory_settings"]
+            end
+
+            map_gen_settings["territory_settings"] = nil
+
+            surface.map_gen_settings = map_gen_settings
+
+            table.insert(processed_surface_names, surface.name)
+
+        end
+
     end
 
     -- Output informative message to all players.
     table.sort(processed_surface_names)
-    game.print({"info.br-biter-base-generation-disabled", table.concat(processed_surface_names, ", ")})
+    game.print({"info.br-critter-base-generation-disabled", table.concat(processed_surface_names, ", ")})
 
 end
 
 
---- Enables biter base generation on passed-in surfaces.
+--- Enables critter base generation on passed-in surfaces.
 --
--- @param surfaces {LuaSurface} List of surfaces where biter base generation should be enabled.
+-- @param surfaces {LuaSurface} List of surfaces where critter base generation should be enabled.
 --
-function remover.enable_biter_base_generation(surfaces)
+function remover.enable_critter_base_generation(surfaces)
 
     -- List of surfaces that have been processed, used for informing players.
     local processed_surface_names = {}
@@ -110,8 +142,7 @@ function remover.enable_biter_base_generation(surfaces)
     for _, surface in pairs(surfaces) do
         local map_gen_settings = surface.map_gen_settings
 
-        -- Ignore surfaces without autplace controls for enemy bases (such as ones from Factorissimo 2 and similar
-        -- mods).
+        -- Biter generation.
         if map_gen_settings.autoplace_controls and map_gen_settings.autoplace_controls["enemy-base"] then
 
             local biter_base_generation_size =
@@ -126,11 +157,37 @@ function remover.enable_biter_base_generation(surfaces)
 
         end
 
+        -- Pentapod generation.
+        if map_gen_settings.autoplace_controls and map_gen_settings.autoplace_controls["gleba_enemy_base"] then
+
+            local pentapod_base_generation_size =
+                storage.pentapod_base_generation_size and storage.pentapod_base_generation_size[surface.name] or
+                game.default_map_gen_settings.autoplace_controls["gleba_enemy_base"].size
+
+            map_gen_settings.autoplace_controls["gleba_enemy_base"].size = pentapod_base_generation_size
+
+            surface.map_gen_settings = map_gen_settings
+
+            table.insert(processed_surface_names, surface.name)
+
+        end
+
+        -- @NOTE: Unable to fallback to default settings for demolisher territory
+        --     Default is simply not exposed by the game, so all one can do is rely on stored settings. Perhaps one way
+        --     to move forward would be to introduce another layer of fallback settings that have same values as default
+        --     new game settings?
+        -- Demolisher generation.
+        if storage.territory_settings and storage.territory_settings[surface.name] then
+            map_gen_settings.territory_settings = storage.territory_settings[surface.name]
+            surface.map_gen_settings = map_gen_settings
+            table.insert(processed_surface_names, surface.name)
+        end
+
     end
 
     -- Output informative message to all players.
     table.sort(processed_surface_names)
-    game.print({"info.br-biter-base-generation-enabled", table.concat(processed_surface_names, ", ")})
+    game.print({"info.br-critter-base-generation-enabled", table.concat(processed_surface_names, ", ")})
 end
 
 

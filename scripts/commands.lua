@@ -49,25 +49,25 @@ commands.remove_critters.func = function(command_data)
 end
 
 
-commands.disable_biter_base_generation = {}
-commands.disable_biter_base_generation.name = "disable-biter-base-generation"
-commands.disable_biter_base_generation.help = [[
-Disables biter base generation on newly generated chunks.
+commands.disable_critter_base_generation = {}
+commands.disable_critter_base_generation.name = "disable-critter-base-generation"
+commands.disable_critter_base_generation.help = [[
+Disables critter base (biters/pentapods) and territory (demolishers) generation on newly generated chunks.
 Usage:
-    /disable-biter-base-generation [SURFACE]
+    /disable-critter-base-generation [SURFACE]
 Parameters:
     SURFACE
-        List of (space-separated) surfaces where biter base generation should be disabled. For currently visible
-        surface, specify "current" as surface name. To disable biter base generation on every single surface in the
-        game, pass-in "all" as surface name.
+        List of (space-separated) surfaces where critter base and territory generation should be disabled. For currently
+        visible surface, specify "current" as surface name. To disable critter base and territory generation on every
+        single surface in the game, pass-in "all" as surface name.
 ]]
 
 
---- Parses the passed-in player parameters and invokes disabling of biter base generation.
+--- Parses the passed-in player parameters and invokes disabling of critter base generation.
 --
 -- @param command_data CustomCommandData Command data structure passed-in by the game engine.
 --
-commands.disable_biter_base_generation.func = function(command_data)
+commands.disable_critter_base_generation.func = function(command_data)
     local player = game.players[command_data.player_index]
 
     -- Administrator privileges are required to run the command.
@@ -78,36 +78,36 @@ commands.disable_biter_base_generation.func = function(command_data)
 
     -- Show help if no parameters were specified.
     if not command_data.parameter then
-        player.print(commands.disable_biter_base_generation.help)
+        player.print(commands.disable_critter_base_generation.help)
         return
     end
 
     local surfaces = utils.parse_list_of_surfaces(command_data.parameter, {current=player.surface.name}, player)
     if surfaces then
-        remover.disable_biter_base_generation(surfaces)
+        remover.disable_critter_base_generation(surfaces)
     end
 end
 
 
-commands.enable_biter_base_generation = {}
-commands.enable_biter_base_generation.name = "enable-biter-base-generation"
-commands.enable_biter_base_generation.help = [[
-Enables biter base generation on newly generated chunks.
+commands.enable_critter_base_generation = {}
+commands.enable_critter_base_generation.name = "enable-critter-base-generation"
+commands.enable_critter_base_generation.help = [[
+Enables critter base (biters/pentapods) and territory (demolishers) generation on newly generated chunks.
 Usage:
-    /enable-biter-base-generation [SURFACE]
+    /enable-critter-base-generation [SURFACE]
 Parameters:
     SURFACE
-        List of (space-separated) surfaces where biter base generation should be enabled. For currently visible
-        surface, specify "current" as surface name. To enable biter base generation on every single surface in the
-        game, pass-in "all" as surface name.
+        List of (space-separated) surfaces where critter base and territory generation should be enabled. For currently
+        visible surface, specify "current" as surface name. To enable critter base and territory generation on every
+        single surface in the game, pass-in "all" as surface name.
 ]]
 
 
---- Parses the passed-in player parameters and invokes enabling of biter base generation.
+--- Parses the passed-in player parameters and invokes enabling of critter base and territory generation.
 --
 -- @param command_data CustomCommandData Command data structure passed-in by the game engine.
 --
-commands.enable_biter_base_generation.func = function(command_data)
+commands.enable_critter_base_generation.func = function(command_data)
     local player = game.players[command_data.player_index]
 
     -- Administrator privileges are required to run the command.
@@ -118,13 +118,13 @@ commands.enable_biter_base_generation.func = function(command_data)
 
     -- Show help if no parameters were specified.
     if not command_data.parameter then
-        player.print(commands.enable_biter_base_generation.help)
+        player.print(commands.enable_critter_base_generation.help)
         return
     end
 
     local surfaces = utils.parse_list_of_surfaces(command_data.parameter, {current=player.surface.name}, player)
     if surfaces then
-        remover.enable_biter_base_generation(surfaces)
+        remover.enable_critter_base_generation(surfaces)
     end
 end
 
@@ -190,8 +190,7 @@ Usage:
 Parameters:
     SURFACE
         List of (space-separated) surfaces on which to clear pollution. For currently visible surface, specify "current"
-        as surface name. To enable biter base generation on every single surface in the game, pass-in "all" as surface
-        name.
+        as surface name. To clear pllution on every single surface in the game, pass-in "all" as surface name.
 ]]
 
 

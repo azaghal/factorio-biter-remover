@@ -4,10 +4,14 @@ Date: 9999-99-99
   Changes:
     - Dropped support for game version 2.0.
     - Command for removing (biters) has been renamed to "/remove-critters"
+    - Command for disabling base/territory generation has been renamed to "/disable-critter-base-generation"
+    - Command for enabling base/territory generation has been renamed to "/enable-critter-base-generation"
   Features:
     - Added support for game version 2.1.
     - Added support for removing pentapods and demolishers.
+    - Added support for enabling/disabling pentapod base and demolisher territory generation.
   Bugfixes:
+    - Fixed incorrect usage instructions for clearing pollution.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.1
 Date: 2024-10-31

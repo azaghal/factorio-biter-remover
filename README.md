@@ -34,36 +34,36 @@ Parameters:
     > List of (space-separated) surfaces from which to remove hostile critters. For currently visible surface, specify `current` as surface name. To remove critters from every single surface in the game, pass-in `all` as surface name.
 
 
-### Disable biter base generation
+### Disable critter base and territory generation
 
-Disables biter base generation on newly generated chunks.
+Disables critter base (biters/pentapods) and territory (demolishers) generation on newly generated chunks.
 
 Usage:
 ```
-/disable-biter-base-generation [SURFACE]
+/disable-critter-base-generation [SURFACE]
 ```
 
 Parameters:
 
 -   `[SURFACE]...`
 
-    > List of (space-separated) surfaces where biter base generation should be disabled. For currently visible surface, specify "current" as surface name. To disable biter base generation on every single surface in the game, pass-in "all" as surface name.
+    > List of (space-separated) surfaces where critter base and territory generation should be disabled. For currently visible surface, specify "current" as surface name. To disable critter base and territory generation on every single surface in the game, pass-in "all" as surface name.
 
 
-### Enable biter base generation
+### Enable critter base and territory generation
 
-Enables biter base generation on newly generated chunks.
+Enables critter base (biters/pentapods) and territory (demolishers) generation on newly generated chunks.
 
 Usage:
 ```
-/enable-biter-base-generation [SURFACE]
+/enable-critter-base-generation [SURFACE]
 ```
 
 Parameters:
 
 -   `[SURFACE]...`
 
-    > List of (space-separated) surfaces where biter base generation should be enabled. For currently visible surface, specify "current" as surface name. To enable biter base generation on every single surface in the game, pass-in "all" as surface name.
+    > List of (space-separated) surfaces where critter base and territory generation should be enabled. For currently visible surface, specify "current" as surface name. To enable critter base and territory generation on every single surface in the game, pass-in "all" as surface name.
 
 
 ### Disable pollution
@@ -99,7 +99,7 @@ Parameters:
 
 -   `[SURFACE]...`
 
-    > List of (space-separated) surfaces on which to clear pollution. For currently visible surface, specify "current" as surface name. To enable biter base generation on every single surface in the game, pass-in "all" as surface name.
+    > List of (space-separated) surfaces on which to clear pollution. For currently visible surface, specify "current" as surface name. To clear pllution on every single surface in the game, pass-in "all" as surface name.
 
 
 Known issues
